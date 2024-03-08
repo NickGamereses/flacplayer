@@ -23,8 +23,8 @@ def index():
     )
 
 
-@app.route("/static/<path:filename>")
-def serve_static(filename):
+@app.route("/audio/<path:filename>")
+def serve_audio(filename):
     def generate():
         blob_name = filename
         blob_client = blob_service_client.get_blob_client(container_name, blob_name)
