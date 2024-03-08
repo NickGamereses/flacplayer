@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Audio Player</title>
-</head>
-<body>
-    <h1>Audio Player</h1>
+<form method="POST">
+    <select name="selected_blob">
+        {% for blob in blob_list %}
+            <option value="{{ blob.name }}" {% if selected_blob == blob.name %}selected{% endif %}>{{ blob.name }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Select">
+</form>
 
+{% if selected_blob %}
     <audio controls>
-        <source src="/static/gangstaparadise.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
+        <source src="{{ url_for('serve_static', filename=selected_blob) }}" type="audio/mpeg">
     </audio>
-</body>
-</html>
+{% endif %}
